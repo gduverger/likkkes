@@ -1,6 +1,18 @@
 Likkkes
 =======
 
+This Python (3.3.5) script retrieves “likes” from the most popular Dribbble shots (of the current week, by default) and export a matrix in the following format:
+
+	shot_id	| views_count	| likes_count	| comments_count	| attachments_count	| rebounds_count	| buckets_count	| created_at			| user_id	| user_location	| user_followers_count	| user_followings_coount	| user_shots_count	| X	| Y	| Z	| …
+	1967328	| 4976			| 765			| 87				| 1					| 0					| 37			| 2015-03-10T19:35:58Z	| 4593		| Minneapolis	| 5967					| 208						| 128				| 0	| 1	| 1	| …
+	1970483	| 4272			| 656			| 27				| 0					| 0					| 61			| 2015-03-12T16:11:30Z	| 31752		| Palo Alto, Ca	| 29311					| 1524						| 532				| 0	| 0	| 0	| …
+	…
+
+With `X`, `Y`, `Z`… as user IDs.
+
+See the [CSV file](https://github.com/gduverger/likkkes/blob/master/likkkes.csv).
+See the [JSON file](https://github.com/gduverger/likkkes/blob/master/likkkes.json).
+
 Setting a virtual environmemt (optional)
 ----------------------------------------
 
@@ -17,7 +29,7 @@ Create a text file named `likkkes.conf` with your Dribbble Client Access Token i
 Installing the dependencies (required)
 --------------------------------------
 
-	pip install -r requirements.txt
+	$ pip install -r requirements.txt
 
 Executing the script
 --------------------
