@@ -1,7 +1,7 @@
 Likkkes
 =======
 
-[This script](https://github.com/gduverger/likkkes/blob/master/likkkes.py) (Python 3.3.5) script retrieves “likes” for the most popular [Dribbble](https://dribbble.com/) shots (of the current week, by default) and export a matrix in the following format (with `X`, `Y`, `Z`… as user ids):
+[This script](https://github.com/gduverger/likkkes/blob/master/likkkes.py) retrieves “likes” for the most popular [Dribbble](https://dribbble.com/) shots (of the current week, by default) and export a matrix in the following format (with `X`, `Y`, `Z`… as user ids):
 
 	shot_id	| views_count	| likes_count	| comments_count	| attachments_count	| rebounds_count	| buckets_count	| created_at			| user_id	| user_location	| user_followers_count	| user_followings_coount	| user_shots_count	| X	| Y	| Z	| …
 	1967328	| 4976			| 765			| 87				| 1					| 0					| 37			| 2015-03-10T19:35:58Z	| 4593		| Minneapolis	| 5967					| 208						| 128				| 0	| 1	| 1	| …
@@ -10,9 +10,10 @@ Likkkes
 
 See the resulting [CSV](https://github.com/gduverger/likkkes/blob/master/likkkes.csv) and [JSON](https://github.com/gduverger/likkkes/blob/master/likkkes.json) files.
 
-After using a k-means clustering technique on the resulting data, **I did not find any obvious biases in Dribbble members' likes** ([tweet](https://twitter.com/gduverger/status/577174550061948930)). Please contact me at [@gduverger](https://twitter.com/gduverger) if you reach a different conclusion or if you find (an) issue(s) in the script. Thanks!
+After using a k-means clustering technique on the resulting data, **I did not find any biases in Dribbble members' “likes”** ([tweet](https://twitter.com/gduverger/status/577174550061948930)). Please contact me at [@gduverger](https://twitter.com/gduverger) if you reach a different conclusion or if you find (an) issue(s) in the script. Thanks!
 
 Unsuccesful attempt at clustering “likes”:
+
 ![K-means clustering](https://github.com/gduverger/likkkes/blob/master/likkkes.png)
 
 Setting a virtual environment (optional)
