@@ -8,7 +8,7 @@ This Python (3.3.5) script retrieves “likes” from the most popular Dribbble 
 	1970483	| 4272			| 656			| 27				| 0					| 0					| 61			| 2015-03-12T16:11:30Z	| 31752		| Palo Alto, Ca	| 29311					| 1524						| 532				| 0	| 0	| 0	| …
 	…
 
-See the [CSV](https://github.com/gduverger/likkkes/blob/master/likkkes.csv) or [JSON](https://github.com/gduverger/likkkes/blob/master/likkkes.json) files.
+See the resulting [CSV](https://github.com/gduverger/likkkes/blob/master/likkkes.csv) and [JSON](https://github.com/gduverger/likkkes/blob/master/likkkes.json) files.
 
 After using k-means clustering technique on the resulting data, **I did not find any obvious biases in Dribbble members' likes** ([tweet](https://twitter.com/gduverger/status/577174550061948930)). Please contact me at [@gduverger](https://twitter.com/gduverger) if you reach a different conclusion or if you find (an) issue(s) in the script. Thanks!
 
