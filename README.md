@@ -10,7 +10,7 @@ Likkkes
 
 See the resulting [CSV](https://github.com/gduverger/likkkes/blob/master/likkkes.csv) and [JSON](https://github.com/gduverger/likkkes/blob/master/likkkes.json) files.
 
-After using a k-means clustering technique on the resulting data, **I did not find any biases in Dribbble members' “likes”** ([tweet](https://twitter.com/gduverger/status/577174550061948930)). Please contact me at [@gduverger](https://twitter.com/gduverger) if you reach a different conclusion or if you find (an) issue(s) in the script. Thanks!
+After using a k-means clustering technique (see [XLSX file](https://github.com/gduverger/likkkes/blob/master/likkkes.xlsx)) on the resulting data, **I did not find any biases in Dribbble members' “likes”** ([tweet](https://twitter.com/gduverger/status/577174550061948930)). Please contact me at [@gduverger](https://twitter.com/gduverger) if you reach a different conclusion or if you find (an) issue(s) in the script. Thanks!
 
 Unsuccesful attempt at clustering “likes”:
 
