@@ -39,20 +39,24 @@ Executing the script
 
 	$ python likkkes.py --format=csv --verbose
 
-### Help
+### --help
 
 	$ python likkkes.py --help
 	Usage: likkkes.py [OPTIONS]
 
 	Options:
-	  --verbose / --no-verbose      Verbosity (False by default).
-	  --follow / --no-follow        Fetch next page results or not (False by
-	                                default).
-	  -s, --shots-per-page INTEGER  The number of shots returned per page (10 by
-	                                default).
-	  -l, --likes-per-page INTEGER  The number of likes returned per page (100 by
-	                                default).
-	  -t, --timeframe TEXT          A period of time to limit the results to
-	                                ("week" by default).
-	  -f, --format [csv|json]       The file format to export the results to.
-	  --help                        Show this message and exit.
+	  --verbose / --no-verbose        Verbosity (False by default).
+	  --follow / --no-follow          Fetch next page results or not (False by
+	                                  default).
+	  -p, --shots-per-page INTEGER    The number of shots returned per page (10 by
+	                                  default).
+	  -q, --likes-per-page INTEGER    The number of likes returned per page (100
+	                                  by default).
+	  --headings / --no-headings      Include the table headings (True by default,
+	                                  CSV only).
+	  -t, --timeframe TEXT            A period of time to limit the results to
+	                                  (False by default).
+	  -f, --format [csv|json]         The file format to export the results to.
+	  -s, --sort [comments|recent|views]
+	                                  The sort field ("recent" by default).
+	  --help                          Show this message and exit.
