@@ -6,7 +6,7 @@ from sklearn.cluster import KMeans
 # from sklearn.preprocessing import scale
 
 NUMBER_OF_CLUSTERS = 3
-FILE_NAME = 'date_20150214-timeframe_day-sort_recent-shots_len_3.20150317-212628'
+FILE_NAME = 'date_20150214-timeframe_day-sort_recent-shots_len_623.20150317-214134'
 
 data = numpy.loadtxt(open('csv/likes.%s.csv' % FILE_NAME, 'rb'), delimiter=',')
 # 			| user_1	| user_2	| ... (3715)
