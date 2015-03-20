@@ -14,13 +14,13 @@ DRIBBBLE_SHOTS_URL = 'https://api.dribbble.com/v1/shots'
 @click.option('--follow/--no-follow', default=False, help='Fetch next page results or not (False by default).')
 @click.option('--shots-per-page', '-p', default=10, help='The number of shots returned per page (10 by default).')
 @click.option('--likes-per-page', '-q', default=100, help='The number of likes returned per page (100 by default).')
-@click.option('--timeframe', '-t', default=False, help='A period of time to limit the results to (False by default).')
-@click.option('--date', '-d', default=False, help='Limit the timeframe to a specific date (False by default).')
-@click.option('--sort', '-s', default=False, type=click.Choice(['comments', 'recent', 'views']), help='The sort field ("popular" by default).')
+@click.option('--timeframe', '-t', default=None, help='A period of time to limit the results to (False by default).')
+@click.option('--date', '-d', default=None, help='Limit the timeframe to a specific date (False by default).')
+@click.option('--sort', '-s', default=None, type=click.Choice(['comments', 'recent', 'views', None]), help='The sort field ("popular" by default).')
 def likkkes(timeframe, shots_per_page, likes_per_page, follow, sort, date, verbose):
 
 	if verbose:
-		print('timeframe: %s, shots_per_page: %s, likes_per_page: %s, follow: %s, sort: %s, date: %s, verbose: %s' 
+		print('\ntimeframe: %s\nshots_per_page: %s\nlikes_per_page: %s\nfollow: %s\nsort: %s\ndate: %s\nverbose: %s\n' 
 			% (timeframe, 
 				shots_per_page, 
 				likes_per_page, 
@@ -45,10 +45,11 @@ def likkkes(timeframe, shots_per_page, likes_per_page, follow, sort, date, verbo
 
 		if shots_response.status_code == 200:
 			for s in shots_response.json():
+				likes_count = s['likes_count']
 				shot_dict = {
 					'shot_id': s['id'],
 					'views_count': s['views_count'], 
-					'likes_count': s['likes_count'], 
+					'likes_count': likes_count, 
 					'comments_count': s['comments_count'], 
 					'attachments_count': s['attachments_count'], 
 					'rebounds_count': s['rebounds_count'], 
@@ -64,7 +65,7 @@ def likkkes(timeframe, shots_per_page, likes_per_page, follow, sort, date, verbo
 				users_list = []
 				likes_url = s.get('likes_url', False)
 
-				while likes_url:
+				while likes_url and likes_count:
 
 					time.sleep(1) # Dribbble rate limit (up to 60 requests per minute)
 					likes_response = requests.get(likes_url, headers=headers, params={'per_page': likes_per_page})
@@ -89,9 +90,9 @@ def likkkes(timeframe, shots_per_page, likes_per_page, follow, sort, date, verbo
 			len(shots_list), 
 			datetime.datetime.now().strftime("%Y%m%d-%H%M%S")))
 
-	users_file = open('csv/users.%s.csv' % file_name, 'w')
-	shots_file = open('csv/shots.%s.csv' % file_name, 'w')
-	likes_file = open('csv/likes.%s.csv' % file_name, 'w')
+	users_file = open('csv/users.%s.csv' % file_name.lower(), 'w')
+	shots_file = open('csv/shots.%s.csv' % file_name.lower(), 'w')
+	likes_file = open('csv/likes.%s.csv' % file_name.lower(), 'w')
 
 	delimiter = ''
 	for u in users_set:
@@ -110,7 +111,7 @@ def likkkes(timeframe, shots_per_page, likes_per_page, follow, sort, date, verbo
 			'user_id',
 			'user_location',
 			'user_followers_count',
-			'user_followings_coount',
+			'user_followings_count',
 			'user_shots_count'))
 
 	for s in shots_list:
@@ -126,7 +127,7 @@ def likkkes(timeframe, shots_per_page, likes_per_page, follow, sort, date, verbo
 				s['user_id'],
 				s['user_location'],
 				s['user_followers_count'],
-				s['user_followings_coount'],
+				s['user_followings_count'],
 				s['user_shots_count']))
 
 		delimiter = ''
@@ -137,24 +138,6 @@ def likkkes(timeframe, shots_per_page, likes_per_page, follow, sort, date, verbo
 				likes_file.write('%s0' % delimiter)
 			delimiter = ','
 		likes_file.write('\n')
-
-	"""
-	############################## JSON ##############################
-
-	likes_file = open('json/likes.%s.json' % likes_file_name, 'w')
-
-	for s in shots_list:
-		likes_list = []
-
-		for u in users_set:
-			if u in s.get('likes', []):
-				likes_list.append({'user_id': u, 'like': True})
-			else:
-				likes_list.append({'user_id': u, 'like': False})
-		s['likes'] = likes_list
-
-	likes_file.write(json.dumps(shots_list))
-	"""
 
 if __name__ == '__main__':
 	likkkes()

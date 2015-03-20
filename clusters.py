@@ -5,10 +5,10 @@ import numpy
 from sklearn.cluster import KMeans
 # from sklearn.preprocessing import scale
 
-NUMBER_OF_CLUSTERS = 3
-FILE_NAME = 'date_20150214-timeframe_day-sort_recent-shots_len_623.20150317-214134'
+NUMBER_OF_CLUSTERS = 8
+FILE_NAME = 'date_20150214-timeframe_week-sort_None-shots_len_5600.20150319-184254'
 
-data = numpy.loadtxt(open('csv/likes.%s.csv' % FILE_NAME, 'rb'), delimiter=',')
+data = numpy.loadtxt(open('csv/likes.%s.csv' % FILE_NAME.lower(), 'rb'), delimiter=',')
 # 			| user_1	| user_2	| ... (3715)
 # ---------------------------------------
 # shot_1	| 1			| 0			| ...
@@ -32,6 +32,6 @@ n_samples, n_features = numpy.array(data).shape
 
 kmeans = KMeans(init='k-means++', n_clusters=NUMBER_OF_CLUSTERS)
 
-clusters_file = open('csv/clusters.%s.csv' % FILE_NAME, 'w')
+clusters_file = open('csv/clusters.%s.number_clusters_%s.csv' % (FILE_NAME.lower(), NUMBER_OF_CLUSTERS), 'w')
 clusters_file.write(','.join([str(_) for _ in kmeans.fit_predict(data)]))
 # [cluster_1, cluster_2, cluster_1...] (3715)
